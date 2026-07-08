@@ -15,7 +15,7 @@
 
 (deftest smoke-test
   (testing "root namespace loads"
-    (is (some? (the-ns 'eng-web)))))
+    (is (some? (find-ns 'eng-web)))))
 
 ;; ── tech-node ──
 
