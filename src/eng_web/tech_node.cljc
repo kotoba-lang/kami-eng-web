@@ -9,7 +9,7 @@
   This is the only piece of `kami-eng-web::parse_tech_node` that is portable:
   the actual `kami_pdk::TechFile`/`stdcell`/`memory` compilation this keyword
   feeds into lives in the unported `kami-pdk` crate."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (def tech-nodes
   "Ordered from oldest to newest process node, mirroring the original Rust
@@ -17,11 +17,11 @@
   [:n180 :n130 :n90 :n65 :n45 :n28 :n22 :n16 :n14 :n10 :n7 :n5 :n3 :n2])
 
 (def ^:private name->node
-  (into {} (map (fn [k] [(str/upper-case (name k)) k]) tech-nodes)))
+  (into {} (map (fn [k] [(str/upper (name k)) k]) tech-nodes)))
 
 (defn parse-tech-node
   "Parse a technology-node name (e.g. \"N7\", \"n5\") into a keyword
   (`:n7`, `:n5`, ...). Case-insensitive, matching the original Rust
   `node.to_uppercase().as_str()` dispatch. Returns nil for unknown nodes."
   [node]
-  (get name->node (str/upper-case (str node))))
+  (get name->node (str/upper (str node))))
