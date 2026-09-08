@@ -8,7 +8,7 @@
   construction, and the fixed `ThermalSpec` defaults. Excluded: the actual
   `kami_pkg::package::estimate_package`/`kami_pkg::thermal::calculate_thermal`
   computations, which live in the unported `kami-pkg` crate."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn parse-package-type
   "Parse a package-type string (\"QFP\"/\"BGA\"/\"CSP\"/\"WLCSP\", case
@@ -16,7 +16,7 @@
   values hard-coded in the original `pkg_estimate` wasm entry point.
   Returns nil for unknown package types."
   [pkg-type]
-  (case (str/upper-case (str pkg-type))
+  (case (str/upper (str pkg-type))
     "QFP"   {:type :qfp :pin-count 144 :pitch-mm 0.5}
     "BGA"   {:type :bga :rows 20 :cols 20 :pitch-mm 0.8}
     "CSP"   {:type :csp :rows 10 :cols 10 :pitch-mm 0.5}

@@ -8,7 +8,7 @@
   the fixed `NocConfig` defaults (`data_width`/`flit_size`/routing).
   Excluded: the actual `kami_ip::noc::generate_noc` router/link synthesis,
   which lives in the unported `kami-ip` crate."
-  (:require [clojure.string :as str]))
+  (:require [kotoba.lang.text :as str]))
 
 (defn parse-topology
   "Parse a NoC topology string (\"mesh\"/\"ring\"/\"crossbar\", case
@@ -16,7 +16,7 @@
   mirroring the original Rust match arms 1:1. Returns nil for unknown
   topologies."
   [topology rows cols]
-  (case (str/lower-case (str topology))
+  (case (str/lower (str topology))
     "mesh"     {:type :mesh :rows rows :cols cols}
     "ring"     {:type :ring :nodes (* rows cols)}
     "crossbar" {:type :crossbar :ports (* rows cols)}
