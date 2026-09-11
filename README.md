@@ -67,5 +67,5 @@ no `#[test]`s in `lib.rs`; these provide coverage of the ported kernels).
 ## Develop
 
 ```bash
-clojure -M:test
+kbb -M:test
 ```
