@@ -63,7 +63,7 @@
 
   ## Status
 
-  Restored (scoped) — see `test/eng_web_test.cljc` for coverage of every
+  Restored (scoped) — see `test/eng_web_test.cljk` for coverage of every
   ported namespace, plus a namespace-loads smoke test. The original had no
   `#[test]`s in `lib.rs`."
   (:require [eng-web.tech-node]
